@@ -1,15 +1,25 @@
+<!doctype html>
 <html>
   <head>
     <title>simpler.pw</title>
     <style type="text/css">
-      body {
+      body *, input {
         font-family: arial, verdana, helvetica;
-        font-size: 1.1em;
+        font-size: 18px;
+        padding: 2px;
+      }
+
+      input {
+        width: 60px;
+      }
+
+      input[type=password] {
+        width: 90px;
       }
 
       iframe#pass {
-        width: 200px;
-        height: 50px;
+        width: 230px;
+        height: 40px;
         margin: 0;
         padding: 0;
       }
@@ -20,6 +30,7 @@
     <form method="post" action="/" target="pass">
       <input type="password" value="" name="word">
       <input type="submit" value="OK" name="submit">
+      <input type="button" value="Clear" onClick="location.reload()">
     </form>
 
     <!-- ...to see the generated password here -->

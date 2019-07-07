@@ -2,7 +2,7 @@
   "name": "simpler-password",
   "version": "1.0.0",
   "description": "Simpler passwords",
-  "main": "index.js",
+  "main": "simpler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

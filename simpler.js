@@ -3,17 +3,18 @@ const express = require('express'),
       basicAuth = require('express-basic-auth'),
       path = require('path'),
       crypto = require('crypto'),
+      PORT = process.argv[2] || 2929,
       SPECIAL_CHAR = '~!@#$%^&*',
-      MIN_PASSWORD_LENGTH = 30;
+      MAX_PASSWORD_LENGTH = 12;
 
-let salts = {};
+let keys = {};
 
 function reverse(s) {
   return s.split('').reverse().join('');
 }
 
-function shorten(word) {
-  var length = parseInt(process.argv.pop()) || process.env.PASS_SIZE;
+function shorten(word, length) {
+  length = parseInt(process.argv[3]) || length;
   return length > 0 ? word.substr(0, length) : word;
 }
 
@@ -28,16 +29,13 @@ function special(s) {
   return s.substr(0, left) + char + s.substr(left);
 }
 
-// get a salt via the basic auth password
+// get a key via the basic auth password
 function basicAuthHandler(username, password) {
-  salts[username] = password; 
+  keys[username] = password; 
   return true;
 }
 
-app.use(basicAuth({
-  authorizer: basicAuthHandler,
-  challenge: true
-}));
+app.use(basicAuth({ authorizer: basicAuthHandler, challenge: true }));
 
 app.use(express.urlencoded({extended: true}));
 
@@ -47,28 +45,28 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   let error = null,
-      salt = salts[req.auth.user],
+      key = keys[req.auth.user],
       pass = null,
       word = req.body.word;
 
-  if (salt && word && word.length > 0) {
-    pass = crypto.createHmac('sha256', salt)
+  if (key && word && word.length > 0) {
+    pass = crypto.createHmac('sha256', key)
                  .update(word)
                  .digest('base64')
                  .replace(/[^\w]/g, '');
   } else {
-    error = error || 'missing ' + (!salt ? 'salt' : 'word');
+    error = error || 'missing ' + (!key ? 'key' : 'word');
   } 
 
-  if (pass && pass.length >= MIN_PASSWORD_LENGTH) {
-    pass = shorten(reverse(special(special(pass))));
+  if (pass) {
+    pass = shorten(reverse(special(special(pass))), word.length + 8);
   } else {
-    error = error || 'password too short';
+    error = error || 'missing password';
   }
 
   res.send(error ? error : pass);
 });
 
-app.listen(2929)
+app.listen(PORT);
 
 // EOF
