@@ -1,0 +1,19 @@
+{
+  "name": "simpler-password",
+  "version": "1.0.0",
+  "description": "Simpler passwords",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hutchike/simpler.pw.git"
+  },
+  "author": "Kevin Hutchinson <kevin@legendum.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hutchike/simpler.pw/issues"
+  },
+  "homepage": "https://github.com/hutchike/simpler.pw#readme"
+}
