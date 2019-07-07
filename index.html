@@ -13,8 +13,10 @@
         width: 60px;
       }
 
-      input[type=password] {
+      input[type=text] {
         width: 90px;
+        text-security: disc;
+	-webkit-text-security: disc;
       }
 
       iframe#pass {
@@ -28,7 +30,7 @@
   <body>
     <!-- submit a short mnemonic word here... -->
     <form method="post" action="/" target="pass">
-      <input type="password" value="" name="word">
+      <input type="text" value="" name="word">
       <input type="submit" value="OK" name="submit">
       <input type="button" value="Clear" onClick="location.reload()">
     </form>
