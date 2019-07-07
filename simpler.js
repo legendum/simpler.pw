@@ -4,8 +4,7 @@ const express = require('express'),
       path = require('path'),
       crypto = require('crypto'),
       PORT = process.argv[2] || 2929,
-      SPECIAL_CHAR = '~!@#$%^&*',
-      BASIC_LENGTH = 8;
+      SPECIAL_CHAR = '~!@#$%^&*';
 
 let keys = {};
 
@@ -53,6 +52,8 @@ app.post('/', function (req, res) {
       pass = null,
       word = req.body.word;
 
+  keys[req.auth.user] = null;
+
   if (key && word && word.length > 0) {
     pass = crypto.createHmac('sha256', key)
                  .update(word)
@@ -63,7 +64,7 @@ app.post('/', function (req, res) {
   } 
 
   if (pass) {
-    pass = shorten(reverse(special(special(pass))), word.length + BASIC_LENGTH);
+    pass = shorten(reverse(special(special(pass))), key.length + word.length);
   } else {
     error = error || 'missing password';
   }
