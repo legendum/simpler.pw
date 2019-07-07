@@ -5,7 +5,7 @@ const express = require('express'),
       crypto = require('crypto'),
       PORT = process.argv[2] || 2929,
       SPECIAL_CHAR = '~!@#$%^&*',
-      MAX_PASSWORD_LENGTH = 12;
+      BASIC_LENGTH = 8;
 
 let keys = {};
 
@@ -59,7 +59,7 @@ app.post('/', function (req, res) {
   } 
 
   if (pass) {
-    pass = shorten(reverse(special(special(pass))), word.length + 8);
+    pass = shorten(reverse(special(special(pass))), word.length + BASIC_LENGTH);
   } else {
     error = error || 'missing password';
   }
