@@ -52,7 +52,7 @@ app.post('/', function (req, res) {
       pass = null,
       word = req.body.word;
 
-  keys[req.auth.user] = null;
+  delete keys[req.auth.user];
 
   if (key && word && word.length > 0) {
     pass = crypto.createHmac('sha256', key)
