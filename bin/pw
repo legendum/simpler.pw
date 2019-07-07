@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Shell script to simply get a password
+if [[ -z "$PW" ]] ; then
+    echo "please set a PW env variable"
+    exit 1
+fi
+read word
+curl https://$USER:$PW@simpler.pw -d "word=$word"
+echo
+
+# EOF
