@@ -43,6 +43,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.get('/blank.html', function (req, res) {
+  res.sendFile(path.join(__dirname + '/blank.html'));
+});
+
 app.post('/', function (req, res) {
   let error = null,
       key = keys[req.auth.user],
