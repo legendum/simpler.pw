@@ -28,6 +28,10 @@
   <body>
     <!-- submit a short mnemonic word here... -->
     <form method="post" action="/" target="pass">
+      <div style="display:none">
+        <!-- prevent web browsers from storing passwords -->
+        <input type="password" name="unused" tabindex="-1"/>
+      </div>
       <input type="password" value="" name="word">
       <input type="submit" value="OK" name="submit">
       <input type="button" value="Clear" onClick="location.reload()">
