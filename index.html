@@ -44,6 +44,9 @@
     <!-- ...to see the generated password here in a small iframe -->
     <iframe id="pass" name="pass" frameborder="0" src="/blank.html">
     </iframe>
+    <script>
+      document.getElementById('pass').src = '/blank.html'; // cached
+    </script>
 
   </body>
 </html>
