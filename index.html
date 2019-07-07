@@ -28,7 +28,8 @@
       }
     </style>
   </head>
-  <body>
+  <body onload="document.forms[0].word.focus()">
+
     <!-- submit a short mnemonic word here... -->
     <form method="post" action="/" target="pass">
       <div style="display:none">
@@ -43,5 +44,6 @@
     <!-- ...to see the generated password here -->
     <iframe id="pass" name="pass" frameborder="0">
     </iframe>
+
   </body>
 </html>
