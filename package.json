@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/hutchike/simpler.pw/issues"
   },
-  "homepage": "https://github.com/hutchike/simpler.pw#readme"
+  "homepage": "https://github.com/hutchike/simpler.pw#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0"
+  }
 }

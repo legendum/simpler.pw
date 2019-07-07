@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>simpler.pw</title>
+    <style type="text/css">
+      body {
+        font-family: arial, verdana, helvetica;
+        font-size: 1.1em;
+      }
+
+      iframe#pass {
+        width: 200px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- submit a short mnemonic word here... -->
+    <form method="post" action="/" target="pass">
+      <input type="password" value="" name="word">
+      <input type="submit" value="OK" name="submit">
+    </form>
+
+    <!-- ...to see the generated password here -->
+    <iframe id="pass" name="pass" frameborder="0">
+    </iframe>
+  </body>
+</html>
