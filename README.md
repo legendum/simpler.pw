@@ -7,10 +7,10 @@ Objective: simpler password management
 ## How it works
 
 1. Visit https://simpler.pw/
-2. Login with any username and password (to encrypt your generated passwords)
-3. Enter any mnemonic word, then click "OK"
+2. Login with any username, and your chosen *master password*
+3. Enter any word, then click "OK" to have it encrypted with your password
 
-You will now see your generated password. Simple!
+You will now see your generated password. Simple! (Finally, click on "Clear")
 
 
 ## Details
@@ -18,7 +18,8 @@ You will now see your generated password. Simple!
 * Your username and password are not saved anywhere (see the JavaScript source)
 * Your username, password & mnemonic word are sent over secure HTTPS connections
 * It's better *not to copy/paste the generated password using the clipboard*
-* This service uses virtually no JavaScript in the web browser, for security
+* This service uses very little JavaScript in the web browser, for security
+* Be sure to click "Clear" after using the password, to remove browser history
 
 
 ## Author
