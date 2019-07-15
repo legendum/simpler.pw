@@ -80,5 +80,3 @@ app.post('/', function (req, res) {
 });
 
 app.listen(PORT);
-
-// EOF
