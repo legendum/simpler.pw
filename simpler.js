@@ -1,6 +1,7 @@
 const express = require('express'),
       app = express(),
       basicAuth = require('express-basic-auth'),
+      fs = require('fs'),
       path = require('path'),
       crypto = require('crypto'),
       PORT = process.argv[2] || 2929,
@@ -39,11 +40,17 @@ app.use(basicAuth({ authorizer: basicAuthHandler, challenge: true }));
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  let file = path.join(__dirname, 'web', 'index.html');
+  res.sendFile(file);
 });
 
-app.get('/blank.html', function (req, res) {
-  res.sendFile(path.join(__dirname + '/blank.html'));
+app.get('/:file', function (req, res) {
+  let file = path.join(__dirname, 'web', req.params.file || 'index.html');
+  if (fs.existsSync(file)) {
+    res.sendFile(file);
+  } else {
+    res.status(404).send('Not found');
+  }
 });
 
 app.post('/', function (req, res) {
