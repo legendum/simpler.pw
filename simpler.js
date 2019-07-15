@@ -45,7 +45,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/:file', function (req, res) {
-  let file = path.join(__dirname, 'web', req.params.file || 'index.html');
+  let file = path.join(__dirname, 'web', req.params.file);
   if (fs.existsSync(file)) {
     res.sendFile(file);
   } else {
