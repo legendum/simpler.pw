@@ -6,7 +6,7 @@ if [[ -z "$PW" ]] ; then
     exit 1
 fi
 read word
-curl https://$USER:$PW@simpler.pw -d "word=$word"
+curl -s https://$USER:$PW@simpler.pw -d "word=$word"
 echo
 
 # EOF
