@@ -16,6 +16,10 @@
         width: 90px;
       }
 
+      input#copy-button {
+        width: 20px;
+      }
+
       iframe#pass {
         width: 230px;
         height: 40px;
@@ -35,6 +39,7 @@
       <input type="password" value="" name="word">
       <input type="submit" value="OK" name="submit">
       <input type="button" value="Clear" onClick="location.reload()">
+      <input type="button" value="&#x2398;" id="copy-button" onClick="copy()">
     </form>
 
     <!-- ...to see the generated password here in a small iframe -->
@@ -42,6 +47,25 @@
     </iframe>
     <script>
       document.getElementById('pass').src = '/blank.html'; // cached
+
+      function copy() {
+        var win = window.pass,
+            doc = win.document;
+        if (doc.body.createTextRange) {
+          var range = doc.body.createTextRange();
+          range.moveToElementText(doc.body);
+          range.select();
+        } else if (win.getSelection) {
+          var selection = win.getSelection();
+          var range = doc.createRange();
+          range.selectNodeContents(doc.body);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        } else {
+          console.warn("Could not select text: Unsupported browser");
+        }
+        doc.execCommand('copy');
+      }
     </script>
 
   </body>
