@@ -27,7 +27,7 @@ You will now see your generated password. Simple! (Finally, click on "Clear")
 kevin@legendum.co.uk
 
 
-== License
+## License
 
 Copyright (C) 2019 by Kevin Hutchinson <kevin@legendum.co.uk>
 
