@@ -6,7 +6,7 @@ Objective: simpler password management
 
 ## How it works
 
-1. Visit https://simpler.pw/
+1. Visit https://simpler.pw/pass
 2. Login with any username, and your chosen *master password*
 3. Enter any word, then click "OK" to have it encrypted with your password
 
