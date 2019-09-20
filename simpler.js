@@ -35,25 +35,17 @@ function basicAuthHandler(username, password) {
   return true;
 }
 
-app.use(basicAuth({ authorizer: basicAuthHandler, challenge: true }));
+app.use('/',
+  express.static(path.join('web'))
+);
 
 app.use(express.urlencoded({extended: true}));
 
-app.get('/', function (req, res) {
-  let file = path.join(__dirname, 'web', 'index.html');
-  res.sendFile(file);
-});
+app.use('/pass', basicAuth({ authorizer: basicAuthHandler, challenge: true }),
+  express.static(path.join('web', 'pass'))
+);
 
-app.get('/:file', function (req, res) {
-  let file = path.join(__dirname, 'web', req.params.file);
-  if (fs.existsSync(file)) {
-    res.sendFile(file);
-  } else {
-    res.status(404).send('Not found');
-  }
-});
-
-app.post('/', function (req, res) {
+app.post('/pass', function (req, res) {
   let error = null,
       key = keys[req.auth.user],
       pass = null,

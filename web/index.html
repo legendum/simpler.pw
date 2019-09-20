@@ -12,61 +12,27 @@
         padding: 2px;
       }
 
-      input {
-        width: 90px;
+      ol {
+        padding-left: 29px;
       }
 
-      input#copy-button {
-        width: 2em;
-      }
-
-      iframe#pass {
-        width: 230px;
-        height: 40px;
-        margin: 0;
-        padding: 0;
+      h1 {
+        font-size: 24px;
       }
     </style>
   </head>
-  <body onload="document.forms[0].word.focus()">
+  <body>
+    <h1>simpler.pw</h1>
 
-    <!-- submit a short mnemonic word here... -->
-    <form method="post" action="/" target="pass">
-      <div style="display:none">
-        <!-- prevent web browsers from storing passwords -->
-        <input type="password" name="unused" tabindex="-1"/>
-      </div>
-      <input type="password" value="" name="word">
-      <input type="submit" value="OK" name="submit">
-      <input type="button" value="Clear" onClick="location.reload()">
-      <input type="button" value="&#x2398;" id="copy-button" onClick="copy()">
-    </form>
+    <p>How to simply generate a new password:</p>
+    <ol>
+      <li>Choose a public username, e.g. "spock" (it can be any word you like)</li>
+      <li>Choose a secret password, e.g. "green socks" (keep this secret!)</li>
+      <li>Visit <a href="/pass">simpler.pw/pass</a> by entering your public username and secret password</li>
+      <li>Enter a short memorable word to receive a secure password</li>
+    </ol>
 
-    <!-- ...to see the generated password here in a small iframe -->
-    <iframe id="pass" name="pass" frameborder="0" src="/blank.html">
-    </iframe>
-    <script>
-      document.getElementById('pass').src = '/blank.html'; // cached
-
-      function copy() {
-        var win = window.pass,
-            doc = win.document;
-        if (doc.body.createTextRange) {
-          var range = doc.body.createTextRange();
-          range.moveToElementText(doc.body);
-          range.select();
-        } else if (win.getSelection) {
-          var selection = win.getSelection();
-          var range = doc.createRange();
-          range.selectNodeContents(doc.body);
-          selection.removeAllRanges();
-          selection.addRange(range);
-        } else {
-          console.warn("Could not select text: Unsupported browser");
-        }
-        doc.execCommand('copy');
-      }
-    </script>
-
+    <p>Your secret password is not stored anywhere; It is <i>only</i> used to generate a secure password from your memorable word.</p>
+    <p>The <a href="https://github.com/hutchike/simpler.pw">code for simpler.pw</a> is Public and Open Source, released under the <a href="license.txt">BSD License</a>.</p>
   </body>
 </html>
