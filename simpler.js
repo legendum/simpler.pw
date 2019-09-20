@@ -32,19 +32,12 @@ function special(s) {
 // get a key via the basic auth password
 function basicAuthHandler(username, password) {
   keys[username] = password; 
-  return true;
+  return true; // accept any password
 }
 
-app.use('/',
-  express.static(path.join('web'))
-);
-
-app.use(express.urlencoded({extended: true}));
-
-app.use('/pass', basicAuth({ authorizer: basicAuthHandler, challenge: true }),
-  express.static(path.join('web', 'pass'))
-);
-
+app.use('/pass', basicAuth({ authorizer: basicAuthHandler, challenge: true }));
+app.use('/pass', express.urlencoded({ extended: true }));
+app.use('/pass', express.static(path.join('web', 'pass')));
 app.post('/pass', function (req, res) {
   let error = null,
       key = keys[req.auth.user],
@@ -70,5 +63,7 @@ app.post('/pass', function (req, res) {
 
   res.send(error ? error : pass);
 });
+
+app.use('/', express.static('web'));
 
 app.listen(PORT);
