@@ -1,7 +1,6 @@
 const express = require('express'),
       app = express(),
       basicAuth = require('express-basic-auth'),
-      fs = require('fs'),
       path = require('path'),
       crypto = require('crypto'),
       PORT = process.argv[2] || 2929,
