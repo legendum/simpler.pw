@@ -34,10 +34,10 @@ function basicAuthHandler(username, password) {
   return true; // accept any password
 }
 
-app.use('/pass', basicAuth({ authorizer: basicAuthHandler, challenge: true }));
-app.use('/pass', express.urlencoded({ extended: true }));
-app.use('/pass', express.static(path.join('web', 'pass')));
-app.post('/pass', function (req, res) {
+app.use('/password', basicAuth({ authorizer: basicAuthHandler, challenge: true }));
+app.use('/password', express.urlencoded({ extended: true }));
+app.use('/password', express.static(path.join('web', 'password')));
+app.post('/password', function (req, res) {
   let error = null,
       key = keys[req.auth.user],
       pass = null,
