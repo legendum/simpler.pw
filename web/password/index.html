@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <title>simpler.pw</title>
 
@@ -20,11 +20,16 @@
         width: 2em;
       }
 
+      iframe#pass, iframe#null {
+        width: 0;
+        height: 0;
+        margin: 0;
+        padding: 0;
+      }
+
       iframe#pass {
         width: 230px;
         height: 40px;
-        margin: 0;
-        padding: 0;
       }
     </style>
   </head>
@@ -38,28 +43,28 @@
       </div>
       <input type="password" value="" name="word">
       <input type="submit" value="OK" name="submit">
-      <input type="button" value="Clear" onClick="clear()">
-      <input type="button" value="&#x2398;" id="copy-button" onClick="copy()">
+      <input type="button" value="Clear" onClick="reload()">
+      <input type="button" value="&#x2398;" id="copy-button" onClick="copy(window.pass)">
     </form>
 
     <!-- ...to see the generated password here in a small frame -->
     <iframe id="pass" name="pass" frameborder="0" src="blank.html">
     </iframe>
-    <script>
-      function blank() {
-        document.getElementById('pass').src = 'blank.html';
-      }
-      blank();
 
-      function clear() {
-        blank();
-        copy();
+    <!-- We use a blank frame to clear the clipboard and reload -->
+    <iframe id="null" name="null" frameborder="0" src="blank.html">
+    </iframe>
+
+    <script>
+      document.getElementById('pass').src = 'blank.html';
+
+      function reload() {
+        copy(window.null);
         location.reload();
       }
 
-      function copy() {
-        var win = window.pass,
-            doc = win.document;
+      function copy(win) {
+        var doc = win.document;
         if (doc.body.createTextRange) {
           var range = doc.body.createTextRange();
           range.moveToElementText(doc.body);
