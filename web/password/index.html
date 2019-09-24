@@ -38,7 +38,7 @@
       </div>
       <input type="password" value="" name="word">
       <input type="submit" value="OK" name="submit">
-      <input type="button" value="Clear" onClick="location.reload()">
+      <input type="button" value="Clear" onClick="clear()">
       <input type="button" value="&#x2398;" id="copy-button" onClick="copy()">
     </form>
 
@@ -46,7 +46,16 @@
     <iframe id="pass" name="pass" frameborder="0" src="blank.html">
     </iframe>
     <script>
-      document.getElementById('pass').src = 'blank.html'; // cached
+      function blank() {
+        document.getElementById('pass').src = 'blank.html';
+      }
+      blank();
+
+      function clear() {
+        blank();
+        copy();
+        location.reload();
+      }
 
       function copy() {
         var win = window.pass,
